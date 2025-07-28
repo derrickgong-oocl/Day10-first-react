@@ -1,0 +1,15 @@
+{
+  "name": "jsx-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build-simple.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "esbuild": "^0.25.8"
+  }
+}
