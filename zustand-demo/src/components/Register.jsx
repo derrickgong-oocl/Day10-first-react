@@ -6,7 +6,15 @@ function VerificationCodeButton() {
     // 处理发送验证码逻辑
     console.log('发送验证码');
   };
-  return <button onClick={handleSendCode}>发送验证码</button>;
+  
+  return (
+    <button 
+      type="button" 
+      onClick={handleSendCode}
+    >
+      发送验证码
+    </button>
+  );
 }
 
 function Register() {
