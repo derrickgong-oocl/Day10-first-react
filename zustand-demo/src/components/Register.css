@@ -10,6 +10,7 @@
   box-sizing: border-box;
   margin: 0;
   width: 100%;
+  position: relative;
 }
 
 .Register h1 {
@@ -126,22 +127,6 @@
   padding-right: 1rem;
 }
 
-.phone-input-group button {
-  flex-shrink: 0;
-  width: 120px;
-  padding: 0.875rem 0.75rem;
-  font-size: 0.8rem;
-  border-radius: 8px;
-  background: #10b981;
-  margin-top: 0;
-  white-space: nowrap;
-}
-
-.phone-input-group button:hover {
-  background: #059669;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-}
-
 /* 响应式设计 */
 @media (max-width: 480px) {
   .Register {
@@ -163,12 +148,6 @@
   
   .phone-input-group input {
     padding-right: 1rem;
-  }
-  
-  .phone-input-group button {
-    width: 100px;
-    padding: 0.75rem 0.5rem;
-    font-size: 0.75rem;
   }
 }
 
