@@ -1,0 +1,305 @@
+/* 共享的 Steps 组件样式 */
+.steps-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.steps-header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.steps-header p {
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.step.clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.step.clickable:hover {
+  transform: translateY(-2px);
+}
+
+.step.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.step-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  transition: all 0.3s ease;
+}
+
+.step.completed .step-icon {
+  background: #27ae60;
+  color: white;
+}
+
+.step.current .step-icon {
+  background: #3498db;
+  color: white;
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.2);
+}
+
+.step.pending .step-icon {
+  background: #ecf0f1;
+  color: #95a5a6;
+  border: 2px solid #bdc3c7;
+}
+
+.step-content {
+  text-align: center;
+}
+
+.step-content h3 {
+  margin: 0 0 3px 0;
+  font-size: 13px;
+  color: #2c3e50;
+}
+
+.step-content p {
+  margin: 0;
+  font-size: 11px;
+  color: #7f8c8d;
+}
+
+.valid-indicator {
+  display: block;
+  font-size: 11px;
+  color: #27ae60;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.step-connector {
+  flex: 1;
+  height: 2px;
+  background: #ecf0f1;
+  margin: 0 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.step-connector.completed {
+  background: #27ae60;
+}
+
+.steps-progress {
+  height: 3px;
+  background: #ecf0f1;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #3498db, #27ae60);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+/* 共享的 MultiStepForm 样式 */
+.multi-step-form {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f8f9fa;
+  min-height: auto;
+}
+
+.form-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.prev-btn {
+  background: #95a5a6;
+  color: white;
+}
+
+.prev-btn:hover {
+  background: #7f8c8d;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(149, 165, 166, 0.3);
+}
+
+.next-btn {
+  background: #3498db;
+  color: white;
+}
+
+.next-btn:hover:not(:disabled) {
+  background: #2980b9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.next-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.submit-btn {
+  background: #27ae60;
+  color: white;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #229954;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
+}
+
+.submit-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.reset-btn {
+  padding: 8px 16px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+  background: #c0392b;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(231, 76, 60, 0.3);
+}
+
+.form-status {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 15px;
+  border-radius: 8px;
+  background: #f8f9fa;
+  min-width: 120px;
+}
+
+.status-item span:first-child {
+  font-size: 12px;
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+.status-valid {
+  color: #27ae60;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.status-invalid {
+  color: #e74c3c;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* 共享的响应式设计 */
+@media (max-width: 768px) {
+  .multi-step-form {
+    padding: 10px;
+  }
+  
+  .form-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .nav-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .form-status {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .status-item {
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: auto;
+  }
+}

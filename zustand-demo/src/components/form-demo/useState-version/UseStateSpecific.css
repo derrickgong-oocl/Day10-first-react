@@ -1,0 +1,26 @@
+/* useState 版本特定样式 */
+
+/* 添加红色边框以区分版本 */
+.steps-container {
+  border: 2px solid #e74c3c;
+  position: relative;
+}
+
+.steps-header p {
+  margin-bottom: 10px;
+}
+
+.form-navigation {
+  border: 1px solid #e74c3c;
+}
+
+.form-status {
+  border: 1px solid #e74c3c;
+}
+
+/* useState 版本的响应式设计 */
+@media (max-width: 768px) {
+  .multi-step-form.useState-version {
+    padding: 10px;
+  }
+}
