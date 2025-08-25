@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useFormStore } from '../../../stores/formStore';
+import { validateStep2Form } from '../validateUtils';
 import './StepForm.css';
 
 const Step2Form = () => {
@@ -10,33 +11,20 @@ const Step2Form = () => {
     updateStep2Valid
   } = useFormStore();
 
-  // 验证表单
-  const validateForm = (data) => {
-    const { country, province, city, address, zipCode } = data;
-    
-    const countryValid = country.trim().length > 0;
-    const provinceValid = province.trim().length > 0;
-    const cityValid = city.trim().length > 0;
-    const addressValid = address.trim().length >= 5;
-    const zipCodeValid = /^\d{6}$/.test(zipCode);
-    
-    return countryValid && provinceValid && cityValid && addressValid && zipCodeValid;
-  };
-
   // 处理输入变化
   const handleInputChange = (field, value) => {
     const newData = { ...step2Data, [field]: value };
     updateStep2Data(newData);
     
     // 实时验证
-    const isValid = validateForm(newData);
+    const isValid = validateStep2Form(newData);
     updateStep2Valid(isValid);
   };
 
   // 验证表单
   // 组件挂载时进行初始验证
   useEffect(() => {
-    const isValid = validateForm(step2Data);
+    const isValid = validateStep2Form(step2Data);
     updateStep2Valid(isValid);
   }, []);
 

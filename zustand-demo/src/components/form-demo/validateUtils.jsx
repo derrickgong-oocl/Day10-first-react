@@ -9,3 +9,16 @@ export const validateStep1Form = (data) => {
   
   return nameValid && emailValid && phoneValid && ageValid;
 };
+
+// 验证表单
+export const validateStep2Form = (formData) => {
+  const { country, province, city, address, zipCode } = formData;
+  
+  const countryValid = country.trim().length > 0;
+  const provinceValid = province.trim().length > 0;
+  const cityValid = city.trim().length > 0;
+  const addressValid = address.trim().length >= 5;
+  const zipCodeValid = /^\d{6}$/.test(zipCode);
+  
+  return countryValid && provinceValid && cityValid && addressValid && zipCodeValid;
+};

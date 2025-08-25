@@ -1,34 +1,23 @@
 import React, { useEffect } from 'react';
 import '../zustand-version/StepForm.css';
+import { validateStep2Form } from '../validateUtils';
 
 const Step2Form = ({ data, setData, valid, setValid }) => {
-  // 验证表单
-  const validateForm = (formData) => {
-    const { country, province, city, address, zipCode } = formData;
-    
-    const countryValid = country.trim().length > 0;
-    const provinceValid = province.trim().length > 0;
-    const cityValid = city.trim().length > 0;
-    const addressValid = address.trim().length >= 5;
-    const zipCodeValid = /^\d{6}$/.test(zipCode);
-    
-    return countryValid && provinceValid && cityValid && addressValid && zipCodeValid;
-  };
-
+  
   // 处理输入变化
   const handleInputChange = (field, value) => {
     const newData = { ...data, [field]: value };
     setData(newData);
     
     // 实时验证
-    const isValid = validateForm(newData);
+    const isValid = validateStep2Form(newData);
     setValid(isValid);
   };
 
   // 验证表单
   // 组件挂载时进行初始验证
   useEffect(() => {
-    const isValid = validateForm(data);
+    const isValid = validateStep2Form(data);
     setValid(isValid);
   }, []);
 
