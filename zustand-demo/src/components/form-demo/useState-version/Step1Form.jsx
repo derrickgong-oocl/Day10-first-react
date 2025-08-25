@@ -1,32 +1,21 @@
 import React, { useEffect } from 'react';
 import '../zustand-version/StepForm.css';
+import { validateStep1Form } from '../validateUtils';
 
 const Step1Form = ({ data, setData, valid, setValid }) => {
-  // 验证表单
-  const validateForm = (formData) => {
-    const { name, email, phone, age } = formData;
-    
-    const nameValid = name.trim().length >= 2;
-    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    const phoneValid = /^1[3-9]\d{9}$/.test(phone);
-    const ageValid = age && parseInt(age) >= 18 && parseInt(age) <= 100;
-    
-    return nameValid && emailValid && phoneValid && ageValid;
-  };
-
   // 处理输入变化
   const handleInputChange = (field, value) => {
     const newData = { ...data, [field]: value };
     setData(newData);
     
     // 实时验证
-    const isValid = validateForm(newData);
+    const isValid = validateStep1Form(newData);
     setValid(isValid);
   };
 
   // 组件挂载时进行初始验证
   useEffect(() => {
-    const isValid = validateForm(data);
+    const isValid = validateStep1Form(data);
     setValid(isValid);
   }, []);
 
