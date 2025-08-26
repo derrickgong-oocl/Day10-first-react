@@ -6,6 +6,19 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: CD to my-app  
+        run: cd my-app
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
   sonarqube:
     name: SonarQube
     runs-on: ubuntu-latest
