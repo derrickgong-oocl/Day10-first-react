@@ -51,9 +51,14 @@ export default function ByPage() {
         e.preventDefault();
         fetchTodosByPage();
       }}>
+        <div>
+        页码：
         <input type="number" value={page} placeholder="页码" onChange={(e) => setPage(e.target.value)} />
+        每页数量：
         <input type="number" value={size} placeholder="每页数量" onChange={(e) => setSize(e.target.value)} />
-        <button type="submit">查询</button>
+        <button type="submit">查询</button> 
+        </div>
+        
       </form>
       
       <div>
