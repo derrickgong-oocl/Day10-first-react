@@ -5,16 +5,37 @@ export const todoListStore = create((set, get) => ({
   todos: [],
   loading: false,
   error: null,
+  page: 1,
+  size: 10,
+  setPage: (page) => set({ page: Number(page) || 1 }),
+  setSize: (size) => set({ size: Number(size) || 1 }),
+
   fetchTodos: async () => {
     set({ loading: true, error: null });
     try {
-      const data = await Api.get("/api/v1/todos");
+      const data = await Api.get(`/api/v1/todos`);
       const activetodo = data.filter(todo => todo.status === "active");
       set({ todos: activetodo, loading: false });
     } catch (error) {
       set({ error: error.message, loading: false });
     }
   },
+
+  fetchTodosByPage: async () => {
+    set({ loading: true, error: null });
+    try {
+      const { page, size } = get();
+      const params = new URLSearchParams();
+      params.append('page', page);
+      params.append('size', size);
+      const data = await Api.get(`/api/v1/todos/page?${params.toString()}`);
+      const activetodo = data.filter(todo => todo.status === "active");
+      set({ todos: activetodo, loading: false });
+    } catch (error) {
+      set({ error: error.message, loading: false });
+    }
+  },
+
   isFilter: false,
   setIsFilter: () => set((state) => ({ isFilter: !state.isFilter })),
   handleItemToggle: (item) =>

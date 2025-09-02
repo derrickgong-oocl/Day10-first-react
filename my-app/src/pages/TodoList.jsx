@@ -1,4 +1,4 @@
-import { todoListStore } from "./store/todoListStore.js";
+import { todoListStore } from "../store/todoListStore.js";
 import styles from "./TodoList.module.css";
 import { useEffect } from "react";
 
@@ -31,7 +31,7 @@ export default function TodoList() {
     fetchTodos,
   } = todoListStore();
 
-  // 初始加载数据
+
   useEffect(() => {
     fetchTodos();
   }, []);
@@ -63,7 +63,6 @@ export default function TodoList() {
         </form>
       </div>
       <ul>
-        {/* 使用过滤后的列表进行渲染 */}
 
         {getFilteredItems(todo).map((item) => (
           <TodoItem

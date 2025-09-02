@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import TodoList from './TodoList';
-import About from './pages/About';         
+import TodoList from './pages/TodoList';
+import ByPage from './pages/ByPage';         
 import NotFound from './pages/Notfound';   
 import Contact from './pages/Contact';
 import Help from './pages/Help';
@@ -14,7 +14,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<TodoList />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/bypage" element={<ByPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/help" element={<Help />} />
           <Route path="*" element={<NotFound />} />
