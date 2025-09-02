@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import TodoList from './pages/TodoList';
+import TodoList from './TodoList';
 import About from './pages/About';         
 import NotFound from './pages/Notfound';   
 import Contact from './pages/Contact';
