@@ -5,7 +5,6 @@ import { useEffect } from "react";
 
 function TodoItem({ title, completed, onToggle }) {
   const itemClassName = `${styles.item} ${completed ? styles.checked : ""}`;
-  // 处理添加按钮点击
 
   return (
     <li className={itemClassName}>
@@ -24,9 +23,7 @@ export default function TodoList() {
     isFilter,
     handleItemToggle,
     setIsFilter,
-    getTotalCount,
     getPackedCount,
-    getUnpackedCount,
     handleInputChange,
     newItemName,
     handleAddItem,

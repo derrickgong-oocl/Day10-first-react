@@ -9,7 +9,8 @@ export const todoListStore = create((set, get) => ({
     set({ loading: true, error: null });
     try {
       const data = await Api.get("/api/v1/todos");
-      set({ todos: data, loading: false });
+      const activetodo = data.filter(todo => todo.status === "active");
+      set({ todos: activetodo, loading: false });
     } catch (error) {
       set({ error: error.message, loading: false });
     }
@@ -27,17 +28,9 @@ export const todoListStore = create((set, get) => ({
     if (!Array.isArray(todos)) return [];
     return isFilter ? todos.filter((item) => !item.completed) : todos;
   },
-  getTotalCount: () => {
-    const { todos } = get();
-    return todos.length;
-  },
   getPackedCount: () => {
     const { todos } = get();
     return todos.filter((item) => item.completed).length;
-  },
-  getUnpackedCount: () => {
-    const { todos } = get();
-    return todos.length - todos.filter((item) => item.completed).length;
   },
   newItemName: "",
   handleInputChange: (e) => {
@@ -46,9 +39,10 @@ export const todoListStore = create((set, get) => ({
   handleAddItem: async (e) => {
     e.preventDefault();
     const { newItemName } = get();
+    const { todos } = get();
     if (newItemName.trim() === "") return;
     const newItem = {
-      // id: Date.now(),
+      id: todos.length + 1,
       title: newItemName,
       status: "active",
       completed: false,
@@ -70,15 +64,14 @@ export const todoListStore = create((set, get) => ({
 
   set({ loading: true, error: null });
   try {
-    // 方案1：并发删除（推荐）
     await Promise.all(
-      completedItems.map(item =>
+      completedItems.map(item =>      
         Api.delete(`/api/v1/todos/${item.id}`)
       )
     );
     set({ 
       todos: todos.filter(item => !item.completed),
-      loading: false 
+      loading: false     
     });
   } catch (error) {
     set({
