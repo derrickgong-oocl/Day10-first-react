@@ -1,7 +1,7 @@
-// src/TodoList.js
-import { useState } from 'react';
-import { useRegisterStore } from './store/registerStore';
+import { useRegisterStore } from '../store/registerStore';
 import style from './TodoList.module.css';
+import React, {useState, useEffect} from 'react';
+import { Link, NavLink} from 'react-router';
 
 function TodoItem({ title, completed, onToggle }) {
     const itemClassName = `${style.item} ${completed ? style.checked : ''}`;
@@ -32,7 +32,10 @@ export default function TodoList() {
     };
 
     return (
-        <section className={style.todoList}>
+        <div>
+
+            <section className={style.todoList}>
+
             <h1>Sally Ride 的 Todo 清单</h1>
 
             <label>
@@ -66,6 +69,17 @@ export default function TodoList() {
                     />
                 ))}
             </ul>
+
+            <button
+                type="button"
+                className={style.clearButton}
+                onClick={() => useRegisterStore.getState().clearCompleted()}
+            >
+                清除已完成 ({todos.filter(t => t.completed).length})
+            </button>
+
+            
         </section>
+        </div>
     );
 }

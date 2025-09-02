@@ -1,28 +1,26 @@
-import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import TodoList from './TodoList';
+import TodoList from './pages/TodoList';
+import About from './pages/About';         
+import NotFound from './pages/Notfound';   
+import Contact from './pages/Contact';
+import Help from './pages/Help';
+import Navbar from './components/Navbar';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div>
-        <TodoList>
-        </TodoList>
-      </div>
-      <div className="card">
-        <button onClick={() => setCount((prevCount) => prevCount + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Router>
+      <main className="container section">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<TodoList />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+    </Router>
   );
 }
 

@@ -1,0 +1,52 @@
+/* src/pages/Help.css */
+.help-page {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  font-family: sans-serif;
+  line-height: 1.7;
+  color: #333;
+}
+
+.help-page h2 {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.help-page h3 {
+  color: #28a745;
+  margin: 1.2rem 0 0.6rem;
+}
+
+.help-page p {
+  margin: 0.6rem 0;
+  text-align: justify;
+}
+
+.help-section {
+  margin-bottom: 1.5rem;
+  padding: 0.8rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+}
+
+.help-footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  text-align: center;
+  background: #e9ecef;
+  border-radius: 8px;
+  font-style: italic;
+}
+
+.help-footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.help-footer a:hover {
+  text-decoration: underline;
+}
