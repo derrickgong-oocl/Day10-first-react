@@ -1,0 +1,93 @@
+# mock-server/API.yml
+openapi: 3.0.0
+info:
+  title: Todo API
+  version: 1.0.0
+  description: Sally Ride's Todo List API
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /todos:
+    get:
+      summary: 获取所有待办事项
+      responses:
+        '200':
+          description: 成功返回待办事项列表
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Todo'
+
+    post:
+      summary: 添加新待办事项
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                completed:
+                  default: false
+                  type: boolean
+              required: [title]
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+
+  /todos/{id}:
+    patch:
+      summary: 更新待办事项（如完成状态）
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                completed:
+                  type: boolean
+      responses:
+        '200':
+          description: 更新成功
+
+    delete:
+      summary: 删除待办事项
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 删除成功
+
+components:
+  schemas:
+    Todo:
+      type: object
+      properties:
+        id:
+          type: string
+        text:
+          type: string
+        completed:
+          type: boolean
+      required: [id, text, completed]

@@ -1,7 +1,7 @@
-import { useRegisterStore } from '../store/registerStore';
+import { useRegisterStore } from '../store/todoStore';
 import style from './TodoList.module.css';
 import React, {useState, useEffect} from 'react';
-import { Link, NavLink} from 'react-router';
+import { Link, NavLink} from 'react-router-dom';
 
 function TodoItem({ title, completed, onToggle }) {
     const itemClassName = `${style.item} ${completed ? style.checked : ''}`;
