@@ -1,23 +1,40 @@
 name: Build
+
 on:
   push:
     branches:
       - master
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+
+    defaults:
+      run:
+        working-directory: ./my-app
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: CD to my-app  & install dependencies
-        run: |
-          cd my-app
-          npm install
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Build
-        run: |
-          cd my-app
-          npm run build
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: my-app/build
