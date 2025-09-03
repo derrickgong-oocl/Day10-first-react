@@ -60,7 +60,7 @@ export const todoListStore = create((set, get) => ({
   handleAddItem: async (e) => {
     e.preventDefault();
     const { newItemName } = get();
-    const { todos } = get();
+    const todos = await Api.get(`/api/v1/todos`);
     if (newItemName.trim() === "") return;
     const newItem = {
       id: todos.length + 1,

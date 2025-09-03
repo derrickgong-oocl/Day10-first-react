@@ -1,8 +1,12 @@
-
+import { useRegisterStore } from '../stores/registerStore';
 import './Register.css';
 
+
 function VerificationCodeButton() {
+  const {sendVerificationCode, verificationCodeState} = useRegisterStore();
+
   const handleSendCode = () => {
+    sendVerificationCode();
     // 处理发送验证码逻辑
     console.log('发送验证码');
   };
@@ -11,14 +15,16 @@ function VerificationCodeButton() {
     <button 
       type="button" 
       onClick={handleSendCode}
+      disabled={verificationCodeState.isLoading}
     >
-      发送验证码
+      {verificationCodeState.isLoading ? `${verificationCodeState.countdown}s后重发` : '发送验证码'}
     </button>
   );
 }
 
 function Register() {
-  const handleSubmit = (e) => {
+  const { formData, onUpdateFormData } = useRegisterStore();
+  const handleSubmit = (formData) => {
     e.preventDefault();
     // 处理表单提交逻辑
     console.log('表单提交');
@@ -36,6 +42,8 @@ function Register() {
               id="username"
               placeholder="请输入用户名" 
               required
+              onChange={(e) => onUpdateFormData('username', e.target.value)}
+              value={formData.username}
             />
           </li>
           <li>
@@ -45,6 +53,8 @@ function Register() {
               id="password"
               placeholder="请输入密码" 
               required
+              onChange={(e) => onUpdateFormData('password', e.target.value)}
+              value={formData.password}
             />
           </li>
           <li>
@@ -55,17 +65,21 @@ function Register() {
                 id="phone"
                 placeholder="请输入手机号" 
                 required
+                onChange={(e) => onUpdateFormData('phone', e.target.value)}
+                value={formData.phone}
               />
               <VerificationCodeButton />
             </div>
           </li>
           <li>
-            <label htmlFor="password">手机验证码</label>
+            <label htmlFor="verificationCode">手机验证码</label>
             <input 
               type="text" 
               id="verificationCode"
               placeholder="请输入手机验证码" 
               required
+              onChange={(e) => onUpdateFormData('verificationCode', e.target.value)}
+              value={formData.verificationCode}
             />
           </li>
         </ul>
